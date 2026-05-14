@@ -51,6 +51,6 @@ jobs:
             docker pull "$IMAGE"
             docker rm -f casino-frontend || true
             docker run -d --name casino-frontend --restart unless-stopped \
-              -p 80:80 \
+              -p 80:8080 \
               -e BACKEND_HOST=${{ secrets.BACKEND_HOST_PRIVATE }} \
               "$IMAGE"
