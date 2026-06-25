@@ -1,56 +1,47 @@
-name: Build & Deploy frontend
+name: CI/CD casino-frontend
 
 on:
   push:
-    branches: [ "deploy" ]
+    branches: [deploy]
   workflow_dispatch:
 
 jobs:
   build-push-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Configurar credenciales AWS
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id:     ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token:     ${{ secrets.AWS_SESSION_TOKEN }}
-          aws-region:            ${{ secrets.AWS_REGION }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
 
       - name: Login a ECR
         id: ecr
         uses: aws-actions/amazon-ecr-login@v2
-        with:
-          mask-password: 'true'
 
-      - name: Build y push frontend
+      - name: Build tag y push
         env:
           REGISTRY: ${{ steps.ecr.outputs.registry }}
+          TAG: ${{ github.sha }}
         run: |
+          VERSION=$(cat VERSION 2>/dev/null || echo '1.0.0')
           IMAGE=$REGISTRY/casino-frontend
-          docker build -t $IMAGE:${{ github.sha }} -t $IMAGE:latest -t $IMAGE:v1.0.0 .
-          docker push $IMAGE:${{ github.sha }}
+          docker build -t $IMAGE:v$VERSION -t $IMAGE:latest -t $IMAGE:$TAG .
+          docker push $IMAGE:v$VERSION
           docker push $IMAGE:latest
-          docker push $IMAGE:v1.0.0
+          docker push $IMAGE:$TAG
 
-      - name: Deploy en EC2 frontend
-        uses: appleboy/ssh-action@v1
+      - name: Deploy en EKS
         env:
-          IMAGE: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/casino-frontend:latest
-        with:
-          host: ${{ secrets.EC2_FRONTEND_HOST }}
-          username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
-          envs: IMAGE
-          script: |
-            aws ecr get-login-password --region ${{ secrets.AWS_REGION }} \
-              | docker login --username AWS --password-stdin \
-                ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
-            docker pull "$IMAGE"
-            docker rm -f casino-frontend || true
-            docker run -d --name casino-frontend --restart unless-stopped \
-              -p 80:8080 \
-              -e BACKEND_HOST=${{ secrets.BACKEND_HOST_PRIVATE }} \
-              "$IMAGE"
+          REGISTRY: ${{ steps.ecr.outputs.registry }}
+          TAG: ${{ github.sha }}
+        run: |
+          aws eks update-kubeconfig --name vidal-casino --region us-east-1
+          kubectl apply -f k8s/
+          kubectl set image deployment/casino-frontend casino-frontend=$REGISTRY/casino-frontend:$TAG
+          kubectl rollout status deployment/casino-frontend
