@@ -9,7 +9,6 @@ import { Transaccion } from '../../models/casino.models';
   imports: [CommonModule],
   template: `
     <section class="tarjeta h-cont">
-<<<<<<< HEAD
       <h2 class="titulo-juego">📋 Historial</h2>
 =======
       <h2 class="titulo-juego">
