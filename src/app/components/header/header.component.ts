@@ -12,23 +12,15 @@ import { AuthService } from '../../services/auth.service';
   imports: [CommonModule, RouterLink, RouterLinkActive],
   template: `
     <header class="barra">
-<<<<<<< HEAD
-      <a routerLink="/lobby" class="marca">♠ VidalCasino — EP2 V2♦</a>
-=======
       <a routerLink="/lobby" class="marca">♠ Casino DevOps ♦</a>
->>>>>>> upstream/main
-
       <nav *ngIf="auth.autenticado()">
         <a routerLink="/lobby"     routerLinkActive="activo">Lobby</a>
         <a routerLink="/slots"     routerLinkActive="activo">Slots</a>
         <a routerLink="/roulette"  routerLinkActive="activo">Ruleta</a>
         <a routerLink="/blackjack" routerLinkActive="activo">Blackjack</a>
-<<<<<<< HEAD
-=======
         <a routerLink="/bonos"     routerLinkActive="activo">Bonos</a>
         <a routerLink="/apuestas"  routerLinkActive="activo">Apuestas</a>
         <a routerLink="/estadisticas" routerLinkActive="activo">Estadísticas</a>
->>>>>>> upstream/main
         <a routerLink="/history"   routerLinkActive="activo">Historial</a>
       </nav>
 
@@ -59,13 +51,11 @@ import { AuthService } from '../../services/auth.service';
       backdrop-filter: blur(14px);
     }
     .marca {
-<<<<<<< HEAD
+
       font-family: 'Georgia', serif;
       font-size: 17px; letter-spacing: 4px; text-transform: uppercase;
-=======
       font-family: 'Playfair Display', Georgia, serif; font-weight: 800;
       font-size: 19px; letter-spacing: 3px; text-transform: uppercase;
->>>>>>> upstream/main
       background: linear-gradient(90deg, #b8902a, #f0d060, #d4af37, #f0d060, #b8902a);
       background-size: 300% 100%;
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
