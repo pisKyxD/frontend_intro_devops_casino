@@ -1,20 +1,50 @@
+<<<<<<< HEAD
 /* Monaco Royal — Design System */
 :root {
   --bg:          #040d1c;
   --bg-card:     rgba(6,14,26,0.85);
+=======
+/* ============================================================
+   Monaco Royal — Design System (v2)
+   Tema: casino premium oscuro (verde fieltro + dorado).
+   Fuentes: Playfair Display (display/marca) + Manrope (UI).
+   Se conservan los nombres de clase existentes para no romper vistas.
+   ============================================================ */
+:root {
+  --bg:          #040d1c;
+  --bg-2:        #071524;
+  --bg-card:     rgba(8,18,30,0.85);
+>>>>>>> upstream/main
   --emerald:     #10b981;
   --emerald-dk:  #065f46;
   --gold:        #d4af37;
   --gold-light:  #f0d060;
+<<<<<<< HEAD
   --text:        #e0f0e8;
   --text-muted:  #4a7a64;
   --border:      rgba(16,185,129,0.1);
   --border-gold: rgba(212,175,55,0.3);
+=======
+  --text:        #e6f1ec;
+  --text-muted:  #6a8a7a;
+  --border:      rgba(16,185,129,0.14);
+  --border-gold: rgba(212,175,55,0.3);
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-ui: 'Manrope', 'Segoe UI', system-ui, sans-serif;
+
+  --radius: 14px;
+  --radius-sm: 9px;
+  --shadow-card: 0 10px 40px rgba(0,0,0,0.5);
+  --shadow-soft: 0 4px 16px rgba(0,0,0,0.35);
+  --ring: 0 0 0 3px rgba(212,175,55,0.45);
+>>>>>>> upstream/main
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; height: 100%; }
 body {
+<<<<<<< HEAD
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: linear-gradient(160deg, #040d1c 0%, #071524 55%, #040d1c 100%);
   color: var(--text);
@@ -29,30 +59,77 @@ input, select {
   font-family: inherit;
   padding: 10px 12px;
   border-radius: 8px;
+=======
+  font-family: var(--font-ui);
+  background:
+    radial-gradient(1200px 600px at 50% -10%, rgba(16,185,129,0.08), transparent 60%),
+    linear-gradient(160deg, #040d1c 0%, #071524 55%, #040d1c 100%);
+  background-attachment: fixed;
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.1px;
+}
+
+h1, h2, h3 { font-family: var(--font-display); }
+
+button { font-family: inherit; cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .5; }
+a { color: var(--gold); text-decoration: none; transition: color .15s; }
+a:hover { color: var(--gold-light); }
+
+/* Foco visible global (accesibilidad). */
+:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 6px; }
+
+/* Números tabulares para montos/cuotas/marcadores. */
+.num, td, th, .saldo, .monto { font-variant-numeric: tabular-nums; }
+
+input, select {
+  font-family: inherit;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+>>>>>>> upstream/main
   border: 1px solid rgba(16,185,129,0.2);
   background: rgba(255,255,255,0.04);
   color: var(--text);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
+<<<<<<< HEAD
 input:focus, select:focus {
   border-color: var(--emerald);
   box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
+=======
+input::placeholder { color: #547065; }
+input:focus, select:focus {
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.16);
+>>>>>>> upstream/main
 }
 
 .btn {
   border: 0;
   padding: 10px 18px;
+<<<<<<< HEAD
   border-radius: 8px;
   font-weight: 600;
   letter-spacing: .5px;
   transition: transform .08s ease, filter .15s ease;
+=======
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  letter-spacing: .3px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  min-height: 42px;
+  transition: transform .1s ease, filter .15s ease, box-shadow .15s ease;
+>>>>>>> upstream/main
 }
 .btn-primario {
   background: linear-gradient(135deg, #0d7a56, #10b981);
   color: #fff;
   box-shadow: 0 4px 16px rgba(16,185,129,0.25);
 }
+<<<<<<< HEAD
 .btn-primario:hover:not(:disabled) { filter: brightness(1.1); }
 .btn-gold {
   background: linear-gradient(135deg, #b8902a, #d4af37);
@@ -93,3 +170,64 @@ input:focus, select:focus {
 table { width: 100%; border-collapse: collapse; }
 th, td { padding: 10px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
 th { color: var(--gold); font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; }
+=======
+.btn-primario:hover:not(:disabled) { filter: brightness(1.1); box-shadow: 0 6px 22px rgba(16,185,129,0.35); }
+.btn-gold {
+  background: linear-gradient(135deg, #b8902a, #d4af37);
+  color: #1a1207;
+  font-weight: 800;
+  box-shadow: 0 4px 16px rgba(212,175,55,0.22);
+}
+.btn-gold:hover:not(:disabled) { filter: brightness(1.08); }
+.btn-secundario {
+  background: rgba(255,255,255,0.05);
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.btn-secundario:hover:not(:disabled) { border-color: var(--border-gold); }
+.btn-rojo  { background: linear-gradient(135deg, #7f1d1d, #b91c1c); color: #fff; }
+.btn-verde { background: linear-gradient(135deg, #14532d, #16a34a); color: #fff; }
+.btn:active:not(:disabled) { transform: scale(0.97); }
+
+.tarjeta {
+  position: relative;
+  background:
+    linear-gradient(165deg, rgba(20,40,32,0.5), rgba(8,16,12,0.55)), var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(6px);
+  overflow: hidden;
+}
+/* Filo dorado superior sutil en cada tarjeta. */
+.tarjeta::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.55), transparent);
+}
+
+.titulo-juego {
+  font-family: var(--font-display);
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin: 0 0 20px;
+  font-size: 26px;
+  font-weight: 800;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.error { color: #fca5a5; margin-top: 8px; font-size: 13px; }
+.exito, .ok { color: #86efac; margin-top: 8px; font-size: 13px; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 11px 12px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+th { color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 1.5px; }
+tbody tr { transition: background .15s; }
+tbody tr:hover { background: rgba(16,185,129,0.05); }
+
+/* Respeta la preferencia de menos movimiento en toda la plataforma. */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+>>>>>>> upstream/main

@@ -9,7 +9,17 @@ import { Transaccion } from '../../models/casino.models';
   imports: [CommonModule],
   template: `
     <section class="tarjeta h-cont">
+<<<<<<< HEAD
       <h2 class="titulo-juego">📋 Historial</h2>
+=======
+      <h2 class="titulo-juego">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+             style="vertical-align:-3px;margin-right:8px">
+          <path d="M9 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2"/>
+          <rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 12h6"/><path d="M9 16h6"/>
+        </svg>Historial</h2>
+>>>>>>> upstream/main
       <p *ngIf="!cargando && tx.length === 0">Aún no hay movimientos. ¡Anda al lobby a jugar!</p>
 
       <table *ngIf="tx.length">

@@ -8,5 +8,14 @@
 // ============================================================
 export const environment = {
   production: true,
+<<<<<<< HEAD
   apiBaseUrl: ''   // ruta relativa: /api/... y /health
+=======
+  apiBaseUrl: '',        // ruta relativa: /api/... y /health
+  // Rutas relativas también para los microservicios: nginx enruta por prefijo
+  // /api/bonos → bonos-service y /api/apuestas → apuestas-service.
+  bonosBaseUrl: '',
+  apuestasBaseUrl: '',
+  estadisticasBaseUrl: ''
+>>>>>>> upstream/main
 };

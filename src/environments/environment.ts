@@ -10,5 +10,14 @@
  */
 export const environment = {
   production: false,
+<<<<<<< HEAD
   apiBaseUrl: 'http://localhost:3000'
+=======
+  apiBaseUrl: 'http://localhost:3000',
+  // Microservicios nuevos (FastAPI). En desarrollo el navegador los alcanza
+  // por sus puertos publicados; cada servicio habilita CORS para localhost:4200.
+  bonosBaseUrl: 'http://localhost:8004',
+  apuestasBaseUrl: 'http://localhost:8005',
+  estadisticasBaseUrl: 'http://localhost:8006'
+>>>>>>> upstream/main
 };
