@@ -29,17 +29,11 @@ export const rutas: Routes = [
   { path: 'slots',     canActivate: [authGuard], loadComponent: () => import('./components/slots/slots.component').then(m => m.SlotsComponent) },
   { path: 'roulette',  canActivate: [authGuard], loadComponent: () => import('./components/roulette/roulette.component').then(m => m.RouletteComponent) },
   { path: 'blackjack', canActivate: [authGuard], loadComponent: () => import('./components/blackjack/blackjack.component').then(m => m.BlackjackComponent) },
-<<<<<<< HEAD
-  { path: 'profile',   canActivate: [authGuard], loadComponent: () => import('./components/profile/profile.component').then(m => m.ProfileComponent) },
-  { path: 'history',   canActivate: [authGuard], loadComponent: () => import('./components/history/history.component').then(m => m.HistoryComponent) },
-=======
   { path: 'bonos',     canActivate: [authGuard], loadComponent: () => import('./components/bonos/bonos.component').then(m => m.BonosComponent) },
   { path: 'apuestas',  canActivate: [authGuard], loadComponent: () => import('./components/apuestas/apuestas.component').then(m => m.ApuestasComponent) },
   { path: 'profile',   canActivate: [authGuard], loadComponent: () => import('./components/profile/profile.component').then(m => m.ProfileComponent) },
   { path: 'history',   canActivate: [authGuard], loadComponent: () => import('./components/history/history.component').then(m => m.HistoryComponent) },
   { path: 'estadisticas', canActivate: [authGuard], loadComponent: () => import('./components/estadisticas/estadisticas.component').then(m => m.EstadisticasComponent) },
->>>>>>> upstream/main
 
-  // Cualquier ruta no reconocida → lobby
   { path: '**', redirectTo: 'lobby' }
 ];
